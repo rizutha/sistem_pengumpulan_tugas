@@ -38,10 +38,11 @@
                         <td>
                             <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info btn-sm">Detail</a>
                             <a href="{{ route('tugas.edit', $tugas->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('tugas.destroy', $tugas->id) }}" method="POST" style="display:inline;">
+                            <form class="d-inline" action="{{ route('tugas.destroy', [$tugas->id]) }}" method="POST"
+                                onsubmit="return confirm('Yakin hapus data?')">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                @method('delete')
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>

@@ -16,10 +16,14 @@ use App\Http\Controllers\MahasiswaController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::resource('tugas', TugasController::class);
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
+
+Route::get('/tugasmhs', function () {
+    return view('tugas.mahasiswa.mahasiswa');
+});
