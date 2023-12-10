@@ -17,10 +17,17 @@ use App\Http\Controllers\MahasiswaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
-Route::resource('tugas', TugasController::class);
+Route::get('/tugas/create', [TugasController::class, 'create'])->name('tugas.create');
+Route::post('/tugas', [TugasController::class, 'store'])->name('tugas.store');
+Route::get('/tugas/{id}', [TugasController::class, 'show'])->name('tugas.show');
+Route::get('/tugas/{id}/edit', [TugasController::class, 'edit'])->name('tugas.edit');
+Route::put('/tugas/{id}', [TugasController::class, 'update'])->name('tugas.update');
+Route::delete('/tugas/{id}', [TugasController::class, 'destroy'])->name('tugas.destroy');
+Route::get('/tugas', [TugasController::class, 'index'])->name('tugas.index');
+
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 
