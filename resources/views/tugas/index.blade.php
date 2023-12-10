@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <h2>Data Tugas</h2>
 
         <div class="mb-3">
@@ -15,11 +15,9 @@
                     <th>Mata Kuliah</th>
                     <th>Semester</th>
                     <th>Pertemuan</th>
-                    <th>Link Tugas</th>
                     <th>Nilai</th>
                     <th>Tanggal Buat</th>
                     <th>Tanggal Deadline</th>
-                    <th>Tanggal Pengumpulan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -30,11 +28,9 @@
                         <td>{{ $tugas->matkul }}</td>
                         <td>{{ $tugas->semester }}</td>
                         <td>{{ $tugas->pertemuan }}</td>
-                        <td>{{ $tugas->link_tugas }}</td>
                         <td>{{ $tugas->nilai }}</td>
                         <td>{{ $tugas->tgl_buat }}</td>
                         <td>{{ $tugas->tgl_deadline }}</td>
-                        <td>{{ $tugas->tgl_pengumpulan }}</td>
                         <td>
                             <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info btn-sm">Detail</a>
                             <a href="{{ route('tugas.edit', $tugas->id) }}" class="btn btn-warning btn-sm">Edit</a>
