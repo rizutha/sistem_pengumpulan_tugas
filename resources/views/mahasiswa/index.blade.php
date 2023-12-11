@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <h2>Data Mahasiswa</h2>
 
         <div class="mb-3">

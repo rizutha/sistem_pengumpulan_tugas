@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Dosen; // Changed from Employee to Dosen
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,8 +13,8 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $query = Dosen::orderBy('id', 'asc')->paginate(5);
-        return view('dosen.index', ['queries' => $query]);
+        $query = Dosen::all(); // Changed from Employee to Dosen
+        return view('dosen.index', compact('query')); // Changed from employee.index to dosen.index
     }
 
     /**
@@ -22,7 +22,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        return view('dosen.create');
+        return view('dosen.create'); // Changed from employee.create to dosen.create
     }
 
     /**
@@ -30,50 +30,53 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate(
             [
+                'nip' => 'required|integer', // Changed from telepon to nip
                 'nama' => 'required',
-                'tgl_lahir' => 'required',
-                'telepon' => 'required',
-                'gender' => 'required',
-                'pendidikan' => 'required',
-                'unit_kerja' => 'required',
-                'jabatan' => 'required',
+                'tgl_lahir' => 'required|date',
+                'alamat' => 'required',
+                'kontak' => 'required',
+                'email' => 'required|email',
+                'dosen_matkul' => 'required',
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
+                'nip.required' => 'Kolom NIP tidak boleh kosong',
+                'nip.integer' => 'NIP harus berupa angka',
                 'nama.required' => 'Kolom Nama tidak boleh kosong',
                 'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
-                'telepon.required' => 'Kolom No. Telepon tidak boleh kosong',
-                'gender.required' => 'Gender tidak boleh kosong',
-                'pendidikan.required' => 'Pilihan Pendidikan tidak boleh kosong',
-                'unit_kerja.required' => 'Unit Kerja tidak boleh kosong',
-                'jabatan.required' => 'Kolom Jabatan tidak boleh kosong',
+                'alamat.required' => 'Kolom Alamat tidak boleh kosong',
+                'kontak.required' => 'Kolom Kontak tidak boleh kosong',
+                'email.required' => 'Kolom Email tidak boleh kosong',
+                'email.email' => 'Format Email tidak valid',
+                'dosen_matkul.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
                 'foto.required' => 'Silahkan pilih file foto',
                 'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
                 'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
-            ]
+            ],
         );
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $filename = 'foto' . date('Ymd') . '.' . $foto->getClientOriginalExtension();
-            $foto->storeAs('public/foto/' . $filename);
+            $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('public/file/' . $filename);
         }
 
         Dosen::create([
+            'nip' => $request->nip, // Changed from telepon to nip
             'nama' => $request->nama,
             'tgl_lahir' => $request->tgl_lahir,
-            'telepon' => $request->telepon,
-            'gender' => $request->gender,
-            'pendidikan' => $request->pendidikan,
-            'unit_kerja' => $request->unit_kerja,
-            'jabatan' => $request->jabatan,
+            'alamat' => $request->alamat,
+            'kontak' => $request->kontak,
+            'email' => $request->email,
+            'dosen_matkul' => $request->dosen_matkul,
             'foto' => $filename,
         ]);
 
         return redirect()
-            ->route('dosen.index')
+            ->route('dosen.index') // Changed from employee.index to dosen.index
             ->with('success', 'Data Dosen sudah berhasil disimpan');
     }
 
@@ -82,8 +85,8 @@ class DosenController extends Controller
      */
     public function show($id)
     {
-        $dosen = Dosen::findOrFail($id);
-        return view('dosen.detail', compact('dosen'));
+        $dosen = Dosen::findOrFail($id); // Changed from Employee to Dosen
+        return view('dosen.detail', compact('dosen')); // Changed from employee.detail to dosen.detail
     }
 
     /**
@@ -91,8 +94,8 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
-        $dosen = Dosen::findOrFail($id);
-        return view('dosen.edit', compact('dosen'));
+        $dosen = Dosen::findOrFail($id); // Changed from Employee to Dosen
+        return view('dosen.edit', compact('dosen')); // Changed from employee.edit to dosen.edit
     }
 
     /**
@@ -102,59 +105,61 @@ class DosenController extends Controller
     {
         $request->validate(
             [
+                'nip' => 'required|integer', // Changed from telepon to nip
                 'nama' => 'required',
-                'tgl_lahir' => 'required',
-                'telepon' => 'required',
-                'gender' => 'required',
-                'pendidikan' => 'required',
-                'unit_kerja' => 'required',
-                'jabatan' => 'required',
+                'tgl_lahir' => 'required|date',
+                'alamat' => 'required',
+                'kontak' => 'required',
+                'email' => 'required|email',
+                'dosen_matkul' => 'required',
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
+                'nip.required' => 'Kolom NIP tidak boleh kosong',
+                'nip.integer' => 'NIP harus berupa angka',
                 'nama.required' => 'Kolom Nama tidak boleh kosong',
                 'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
-                'telepon.required' => 'Kolom No. Telepon tidak boleh kosong',
-                'gender.required' => 'Gender tidak boleh kosong',
-                'pendidikan.required' => 'Pilihan Pendidikan tidak boleh kosong',
-                'unit_kerja.required' => 'Unit Kerja tidak boleh kosong',
-                'jabatan.required' => 'Kolom Jabatan tidak boleh kosong',
+                'alamat.required' => 'Kolom Alamat tidak boleh kosong',
+                'kontak.required' => 'Kolom Kontak tidak boleh kosong',
+                'email.required' => 'Kolom Email tidak boleh kosong',
+                'email.email' => 'Format Email tidak valid',
+                'dosen_matkul.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
                 'foto.required' => 'Silahkan pilih file foto',
                 'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
                 'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
-            ]
+            ],
         );
 
         if ($request->hasFile('foto')) {
-            Storage::delete('public/foto/' . $dosen->foto);
+            Storage::delete('public/file/' . $dosen->foto);
             $foto = $request->file('foto');
-            $filename = 'foto' . date('Ymd') . '.' . $foto->getClientOriginalExtension();
-            $foto->storeAs('public/foto/' . $filename);
+            $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('public/file/' . $filename);
 
             $dosen->update([
+                'nip' => $request->nip, // Changed from telepon to nip
                 'nama' => $request->nama,
                 'tgl_lahir' => $request->tgl_lahir,
-                'telepon' => $request->telepon,
-                'gender' => $request->gender,
-                'pendidikan' => $request->pendidikan,
-                'unit_kerja' => $request->unit_kerja,
-                'jabatan' => $request->jabatan,
+                'alamat' => $request->alamat,
+                'kontak' => $request->kontak,
+                'email' => $request->email,
+                'dosen_matkul' => $request->dosen_matkul,
                 'foto' => $filename,
             ]);
         } else {
             $dosen->update([
+                'nip' => $request->nip, // Changed from telepon to nip
                 'nama' => $request->nama,
                 'tgl_lahir' => $request->tgl_lahir,
-                'telepon' => $request->telepon,
-                'gender' => $request->gender,
-                'pendidikan' => $request->pendidikan,
-                'unit_kerja' => $request->unit_kerja,
-                'jabatan' => $request->jabatan,
+                'alamat' => $request->alamat,
+                'kontak' => $request->kontak,
+                'email' => $request->email,
+                'dosen_matkul' => $request->dosen_matkul,
             ]);
         }
 
         return redirect()
-            ->route('dosen.index')
+            ->route('dosen.index') // Changed from employee.index to dosen.index
             ->with('success', 'Data Dosen Berhasil diUpdate');
     }
 
@@ -165,10 +170,10 @@ class DosenController extends Controller
     {
         $dosen->delete();
 
-        Storage::delete('public/foto/' . $dosen->foto);
+        Storage::delete('public/file/' . $dosen->foto);
 
         return redirect()
-            ->route('dosen.index')
+            ->route('dosen.index') // Changed from employee.index to dosen.index
             ->with('success', 'Data Dosen berhasil dihapus');
     }
 }

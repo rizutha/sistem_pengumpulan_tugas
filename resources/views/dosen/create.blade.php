@@ -34,7 +34,20 @@
                 <label for="dosen_matkul">Dosen Matkul:</label>
                 <input type="text" class="form-control" id="dosen_matkul" name="dosen_matkul" required>
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <div class="row py-2">
+                <label for="foto">Foto <span class="text-danger">*</span></label>
+                <input type="file" name="foto"
+                    class="form-control @if ($errors->has('foto')) is-invalid @endif"
+                    placeholder="Pilih foto" value="{{ old('foto') }}">
+                <small>Tipe Foto : JPG/JPEG/PNG. Max : 10 MB.</small>
+                @if ($errors->has('foto'))
+                    <br>
+                    <small class="text-danger">
+                        {{ $errors->first('foto') }}
+                    </small>
+                @endif
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
         </form>
     </div>
 @endsection
