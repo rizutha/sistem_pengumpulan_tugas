@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($queries as $dosen)
+                @foreach($query as $dosen)
                     <tr>
                         <td>{{ $dosen->id }}</td>
                         <td>{{ $dosen->nip }}</td>
@@ -46,7 +46,5 @@
                 @endforeach
             </tbody>
         </table>
-
-        {{ $queries->links() }}
     </div>
 @endsection

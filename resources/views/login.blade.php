@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Laravel App</title>
+    <title>S.P.T</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Optional: Add your own CSS styles here -->
@@ -14,9 +14,9 @@
           <div class="container">
             <div class="row gx-lg-5 align-items-center">
               <div class="col-lg-6 mb-5 mb-lg-0">
-                <h1 class="my-5 display-3 fw-bold ls-tight">
-                  The best offer <br />
-                  <span class="text-primary">for your business</span>
+                <h1 class="my-5 display-5 fw-bold ls-tight">
+                  Sistem Pengumpulan Tugas <br />
+                  <span class="text-primary">for your college</span>
                 </h1>
                 <p style="color: hsl(217, 10%, 50.8%)">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.

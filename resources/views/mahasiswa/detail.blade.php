@@ -11,6 +11,10 @@
                 <p class="card-text">Alamat: {{ $mahasiswa->alamat }}</p>
                 <p class="card-text">Tanggal Lahir: {{ $mahasiswa->tgl_lahir }}</p>
                 <p class="card-text">Kontak: {{ $mahasiswa->kontak }}</p>
+                <p class="card-text">Email: {{ $mahasiswa->email }}</p>
+                <p class="card-text">Prodi: {{ $mahasiswa->prodi }}</p>
+                <p class="card-text">Semester: {{ $mahasiswa->semester }}</p>
+                <p class="card-text">Foto: {{ asset('storage/images/mahasiswa' . $mahasiswa->foto) }}</p>
             </div>
         </div>
 

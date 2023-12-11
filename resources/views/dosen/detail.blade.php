@@ -13,6 +13,7 @@
                 <p class="card-text">Kontak: {{ $dosen->kontak }}</p>
                 <p class="card-text">Email: {{ $dosen->email }}</p>
                 <p class="card-text">Dosen Matkul: {{ $dosen->dosen_matkul }}</p>
+                <p class="card-text">Foto: {{ asset('storage/images/dosen' . $dosen->foto) }}</p>
             </div>
         </div>
 

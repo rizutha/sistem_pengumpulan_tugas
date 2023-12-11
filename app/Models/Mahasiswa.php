@@ -17,5 +17,6 @@ class Mahasiswa extends Model
         'email',
         'prodi',
         'semester',
+        'foto',
     ];
 }

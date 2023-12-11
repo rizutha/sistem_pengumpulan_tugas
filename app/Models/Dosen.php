@@ -16,5 +16,6 @@ class Dosen extends Model
         'kontak',
         'email',
         'dosen_matkul',
+        'foto',
     ];
 }
