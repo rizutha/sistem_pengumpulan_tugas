@@ -40,6 +40,7 @@ class MahasiswaController extends Controller
                 'email' => 'required|email',
                 'prodi' => 'required',
                 'semester' => 'required',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
                 'nim.required' => 'Kolom NIM tidak boleh kosong',
@@ -51,6 +52,9 @@ class MahasiswaController extends Controller
                 'email.email' => 'Format Email tidak valid',
                 'prodi.required' => 'Kolom Program Studi tidak boleh kosong',
                 'semester.required' => 'Kolom Semester tidak boleh kosong',
+                'foto.required' => 'Silahkan pilih file foto',
+                'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
+                'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
             ]
         );
 
@@ -94,6 +98,7 @@ class MahasiswaController extends Controller
                 'email' => 'required|email',
                 'prodi' => 'required',
                 'semester' => 'required',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
                 'nim.required' => 'Kolom NIM tidak boleh kosong',
@@ -105,6 +110,9 @@ class MahasiswaController extends Controller
                 'email.email' => 'Format Email tidak valid',
                 'prodi.required' => 'Kolom Program Studi tidak boleh kosong',
                 'semester.required' => 'Kolom Semester tidak boleh kosong',
+                'foto.required' => 'Silahkan pilih file foto',
+                'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
+                'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
             ]
         );
 

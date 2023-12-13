@@ -98,14 +98,11 @@ class DosenController extends Controller
         return view('dosen.edit', compact('dosen')); // Changed from employee.edit to dosen.edit
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Dosen $dosen)
     {
         $request->validate(
             [
-                'nip' => 'required|integer', // Changed from telepon to nip
+                'nip' => 'required|integer',
                 'nama' => 'required',
                 'tgl_lahir' => 'required|date',
                 'alamat' => 'required',

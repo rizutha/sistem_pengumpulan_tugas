@@ -13,7 +13,9 @@
                 <p class="card-text">Kontak: {{ $dosen->kontak }}</p>
                 <p class="card-text">Email: {{ $dosen->email }}</p>
                 <p class="card-text">Dosen Matkul: {{ $dosen->dosen_matkul }}</p>
-                <p class="card-text">Foto: {{ asset('storage/images/dosen' . $dosen->foto) }}</p>
+                @if($dosen->foto)
+                    <img src="{{ asset('storage/file/' . $dosen->foto) }}" style="width:250px" class="rounded-3  " />
+                @endif
             </div>
         </div>
 
