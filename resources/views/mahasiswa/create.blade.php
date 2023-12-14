@@ -1,55 +1,138 @@
+<!-- resources/views/mahasiswa/create.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')
     <div class="container mt-5">
-        <h2>Tambah Mahasiswa</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Tambah Mahasiswa</div>
 
-        <form action="{{ route('mahasiswa.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="nim">NIM:</label>
-                <input type="text" class="form-control" id="nim" name="nim" required>
+                    <div class="card-body">
+                        <form action="{{ route('mahasiswa.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <p><b>Kolom bertanda <span class="text-danger">*</span> tidak boleh kosong</b></p>
+                            <div class="row">
+                                <div class="col px-4">
+                                    <div class="row py-2">
+                                        <label for="nim">NIM <span class="text-danger">*</span></label>
+                                        <input type="text" name="nim"
+                                            class="form-control @error('nim') is-invalid @enderror"
+                                            placeholder="Masukkan NIM" value="{{ old('nim') }}">
+                                        @error('nim')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="nama">Nama <span class="text-danger">*</span></label>
+                                        <input type="text" name="nama"
+                                            class="form-control @error('nama') is-invalid @enderror"
+                                            placeholder="Masukkan Nama" value="{{ old('nama') }}">
+                                        @error('nama')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="tgl_lahir">Tanggal Lahir <span class="text-danger">*</span></label>
+                                        <input type="date" name="tgl_lahir"
+                                            class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                            placeholder="Masukkan Tanggal Lahir" value="{{ old('tgl_lahir') }}">
+                                        @error('tgl_lahir')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="alamat">Alamat <span class="text-danger">*</span></label>
+                                        <input type="text" name="alamat"
+                                            class="form-control @error('alamat') is-invalid @enderror"
+                                            placeholder="Masukkan Alamat" value="{{ old('alamat') }}">
+                                        @error('alamat')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="kontak">Kontak <span class="text-danger">*</span></label>
+                                        <input type="text" name="kontak"
+                                            class="form-control @error('kontak') is-invalid @enderror"
+                                            placeholder="Masukkan Kontak" value="{{ old('kontak') }}">
+                                        @error('kontak')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="email">Email <span class="text-danger">*</span></label>
+                                        <input type="email" name="email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            placeholder="Masukkan Email" value="{{ old('email') }}">
+                                        @error('email')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="prodi">Program Studi <span class="text-danger">*</span></label>
+                                        <input type="text" name="prodi"
+                                            class="form-control @error('prodi') is-invalid @enderror"
+                                            placeholder="Masukkan Program Studi" value="{{ old('prodi') }}">
+                                        @error('prodi')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="row py-2">
+                                        <label for="semester">Semester <span class="text-danger">*</span></label>
+                                        <input type="text" name="semester"
+                                            class="form-control @error('semester') is-invalid @enderror"
+                                            placeholder="Masukkan Semester" value="{{ old('semester') }}">
+                                        @error('semester')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col px-5">
+                                    <div class="row py-2">
+                                        <label for="foto">Foto <span class="text-danger">*</span></label>
+                                        <input type="file" name="foto"
+                                            class="form-control-file @error('foto') is-invalid @enderror"
+                                            placeholder="Pilih Foto" value="{{ old('foto') }}">
+                                        <small>Tipe Foto: JPG/JPEG/PNG. Max: 10 MB.</small>
+                                        @error('foto')
+                                            <br>
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="my-2">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan
+                                        Data</button>
+                                    <a href="{{ route('mahasiswa.index') }}" class="btn btn-danger"><i
+                                            class="fa fa-arrow-left"></i>
+                                        Kembali</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="nama">Nama:</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
-            </div>
-            <div class="form-group">
-                <label for="alamat">Alamat:</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" required>
-            </div>
-            <div class="form-group">
-                <label for="tgl_lahir">Tanggal Lahir:</label>
-                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
-            </div>
-            <div class="form-group">
-                <label for="kontak">Kontak:</label>
-                <input type="text" class="form-control" id="kontak" name="kontak" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="prodi">Prodi:</label>
-                <input type="text" class="form-control" id="prodi" name="prodi" required>
-            </div>
-            <div class="form-group">
-                <label for="semester">Semester <span class="text-danger">*</span></label>
-                <select name="semester" class="form-control @if ($errors->has('semester')) is-invalid @endif">
-                    <option value="" selected disabled>Pilih Semester</option>
-                    <option value="1" {{ old('semester') == '1' ? 'selected' : '' }}>Semester 1</option>
-                    <option value="2" {{ old('semester') == '2' ? 'selected' : '' }}>Semester 2</option>
-                    <option value="3" {{ old('semester') == '3' ? 'selected' : '' }}>Semester 3</option>
-                    <option value="4" {{ old('semester') == '4' ? 'selected' : '' }}>Semester 4</option>
-                    <option value="5" {{ old('semester') == '5' ? 'selected' : '' }}>Semester 5</option>
-                    <option value="6" {{ old('semester') == '6' ? 'selected' : '' }}>Semester 6</option>
-                    <option value="7" {{ old('semester') == '7' ? 'selected' : '' }}>Semester 7</option>
-                    <option value="8" {{ old('semester') == '8' ? 'selected' : '' }}>Semester 8</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
-        </form>
+        </div>
     </div>
 @endsection

@@ -58,7 +58,23 @@ class MahasiswaController extends Controller
             ]
         );
 
-        Mahasiswa::create($request->all());
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('public/mahasiswa/' . $filename);
+        }
+
+        Mahasiswa::create([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'kontak' => $request->kontak,
+            'email' => $request->email,
+            'prodi' => $request->prodi, // Ganti dengan atribut yang sesuai pada model Mahasiswa
+            'semester' => $request->semester, // Ganti dengan atribut yang sesuai pada model Mahasiswa
+            'foto' => $filename,
+        ]);
 
         return redirect()
             ->route('mahasiswa.index')
@@ -116,7 +132,35 @@ class MahasiswaController extends Controller
             ]
         );
 
-        $mahasiswa->update($request->all());
+        if ($request->hasFile('foto')) {
+            Storage::delete('public/mahasiswa/' . $mahasiswa->foto);
+            $foto = $request->file('foto');
+            $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('public/mahasiswa/' . $filename);
+
+            $mahasiswa->update([
+                'nim' => $request->nim,
+                'nama' => $request->nama,
+                'tgl_lahir' => $request->tgl_lahir,
+                'alamat' => $request->alamat,
+                'kontak' => $request->kontak,
+                'email' => $request->email,
+                'prodi' => $request->prodi, // Ganti dengan atribut yang sesuai pada model Mahasiswa
+                'semester' => $request->semester, // Ganti dengan atribut yang sesuai pada model Mahasiswa
+                'foto' => $filename,
+            ]);
+        } else {
+            $mahasiswa->update([
+                'nim' => $request->nim,
+                'nama' => $request->nama,
+                'tgl_lahir' => $request->tgl_lahir,
+                'alamat' => $request->alamat,
+                'kontak' => $request->kontak,
+                'email' => $request->email,
+                'prodi' => $request->prodi,
+                'semester' => $request->semester,
+            ]);
+        }
 
         return redirect()
             ->route('mahasiswa.index')
@@ -129,6 +173,8 @@ class MahasiswaController extends Controller
     public function destroy(Mahasiswa $mahasiswa)
     {
         $mahasiswa->delete();
+
+        Storage::delete('public/mahasiswa/' . $mahasiswa->foto);
 
         return redirect()
             ->route('mahasiswa.index')

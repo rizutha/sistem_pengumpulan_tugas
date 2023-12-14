@@ -61,7 +61,7 @@ class DosenController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
-            $foto->storeAs('public/file/' . $filename);
+            $foto->storeAs('public/dosen/' . $filename);
         }
 
         Dosen::create([
@@ -128,10 +128,10 @@ class DosenController extends Controller
         );
 
         if ($request->hasFile('foto')) {
-            Storage::delete('public/file/' . $dosen->foto);
+            Storage::delete('public/dosen/' . $dosen->foto);
             $foto = $request->file('foto');
             $filename = 'FTO' . date('Ymd') . rand() . '.' . $foto->getClientOriginalExtension();
-            $foto->storeAs('public/file/' . $filename);
+            $foto->storeAs('public/dosen/' . $filename);
 
             $dosen->update([
                 'nip' => $request->nip, // Changed from telepon to nip
@@ -167,7 +167,7 @@ class DosenController extends Controller
     {
         $dosen->delete();
 
-        Storage::delete('public/file/' . $dosen->foto);
+        Storage::delete('public/dosen/' . $dosen->foto);
 
         return redirect()
             ->route('dosen.index') // Changed from employee.index to dosen.index
