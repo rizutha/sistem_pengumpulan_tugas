@@ -17,7 +17,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                Jacob, Uji Individu
+                Halo, User!
                 <img src="https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png" alt="Logo"
                     width="25" height="24" class="d-inline-block align-text-top">
             </a>

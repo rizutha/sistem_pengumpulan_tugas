@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.P.T</title>
+    <title>S.M.T</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Optional: Add your own CSS styles here -->
+    <style>
+        body{
+            background-color: hsl(0, 0%, 96%);
+        }
+    </style>
 </head>
-<body>
+<body >
         <!-- Jumbotron -->
-        <div class="px-4 py-5 container m-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="px-4 py-5 m-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
           <div class="container">
             <div class="row gx-lg-5 align-items-center">
               <div class="col-lg-6 mb-5 mb-lg-0">
@@ -29,8 +34,8 @@
               <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="card">
                   <div class="card-body py-5 px-md-5">
-                    <form class="">
-
+                    <form action="{{ route('login') }}" method="post">
+                        @csrf
                        <h3 class>Login</h3>
                       <!-- Email input -->
                       <div class="form-outline mb-4 mt-4">
