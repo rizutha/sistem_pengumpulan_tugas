@@ -74,7 +74,7 @@ class TugasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tugas $tugas)
+    public function update(Request $request,  $id)
     {
         $request->validate([
             'matkul' => 'required',
@@ -93,7 +93,8 @@ class TugasController extends Controller
             'tgl_deadline.required' => 'Kolom Tanggal Deadline tidak boleh kosong',
         ]);
 
-        $tugas->update($request->all());
+        $idTugas = Tugas::find($id);
+        $idTugas->update($request->all());
 
         return redirect()
             ->route('tugas.index')

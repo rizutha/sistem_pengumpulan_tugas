@@ -20,8 +20,5 @@
                 <p class="card-text">Dosen Matkul: {{ $dosen->keilmuan }}</p>
             </div>
         </div>
-
-
-        <a href="{{ route('dosen.index') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 @endsection

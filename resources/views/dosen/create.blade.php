@@ -2,7 +2,7 @@
 @section('title', 'Dosen')
 
 @section('content')
-    <div class="rounded-4 p-5 mb-5 shadow-lg">
+    <div class="rounded-2 bg-light container mb-5 mt-5 p-5 shadow-lg">
         <div class="d-flex justify-content-between">
             <div class="">
                 <h2 class="text-dark m-0">Tambah Data Dosen</h2>
@@ -84,13 +84,13 @@
                         @endif
                     </div>
                     <div class="row py-2">
-                        <label for="">Dosen Mata Kuliah <span class="text-danger">*</span></label>
-                        <input type="text" name="dosen_matkul"
-                            class="form-control @if ($errors->has('dosen_matkul')) is-invalid @endif"
-                            placeholder="Masukkan Dosen Mata Kuliah" value="{{ old('dosen_matkul') }}">
-                        @if ($errors->has('dosen_matkul'))
+                        <label for="">Keilmuan <span class="text-danger">*</span></label>
+                        <input type="text" name="keilmuan"
+                            class="form-control @if ($errors->has('keilmuan')) is-invalid @endif"
+                            placeholder="Masukan Keilmuan" value="{{ old('keilmuan') }}">
+                        @if ($errors->has('keilmuan'))
                             <small class="text-danger">
-                                {{ $errors->first('dosen_matkul') }}
+                                {{ $errors->first('keilmuan') }}
                             </small>
                         @endif
                     </div>

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tugass', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_dosens');
+            $table->unsignedBigInteger('id_mahasiswas');
             $table->string('matkul');
             $table->string('semester');
             $table->string('pertemuan');
@@ -21,6 +23,8 @@ return new class extends Migration
             $table->date('tgl_buat');
             $table->date('tgl_deadline');
             $table->date('tgl_pengumpulan')->nullable();
+            $table->foreign('id_dosens')->references('id')->on('dosens');
+            $table->foreign('id_mahasiswas')->references('id')->on('mahasiswas');
             $table->timestamps();
         });
     }

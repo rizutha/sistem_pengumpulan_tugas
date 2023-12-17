@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h2>Data Tugas</h2>
+    <div class="rounded-2 bg-light container mb-5 mt-5 p-5 shadow-lg">
+        <div class="d-flex justify-content-between">
+            <h2>Data Tugas</h2>
 
-        <div class="mb-3">
-            <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
+            <div class="mb-3">
+                <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
+            </div>
         </div>
 
-        <table class="table table-bordered">
+        <table class="table-hover table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -22,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($queries as $tugas)
+                @foreach ($queries as $tugas)
                     <tr>
                         <td>{{ $tugas->id }}</td>
                         <td>{{ $tugas->matkul }}</td>

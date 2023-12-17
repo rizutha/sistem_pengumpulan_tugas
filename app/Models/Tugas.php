@@ -19,4 +19,13 @@ class Tugas extends Model
         'tgl_deadline',
         'tgl_pengumpulan',
     ];
+
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_dosens');
+    }
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswas');
+    }
 }

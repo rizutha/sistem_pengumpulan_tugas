@@ -7,7 +7,7 @@
         <h2>Detail Mahasiswa</h2>
 
         <div class="row">
-            @if ($mahasiswa->foto)
+            @if ($mahasiswa->foto != null)
                 <img src="{{ asset('storage/mahasiswa/' . $mahasiswa->foto) }}" style="width:250px"
                     class="rounded-3 col-auto" />
             @endif
@@ -26,6 +26,5 @@
             </div>
         </div>
 
-        <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 @endsection

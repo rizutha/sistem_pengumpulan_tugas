@@ -1,82 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login()
+    /**
+     * Handle an authentication attempt.
+     */
+    public function auth(Request $request)
     {
-        if (auth()->check()) {
-            return redirect()->intended('handleRoles');
-        }
-        return view('pages.login');
-    }
-
-    public function authenticate(Request $request)
-    {
+        // dd($request->all());
         $credentials = $request->validate([
-            'login' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        $field = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL)
-            ? 'email'
-            : (is_numeric($credentials['login'])
-                ? (strlen($credentials['login']) > 10 ? 'NIP' : (strlen($credentials['login']) > 5 ? 'NIS' : 'invalid'))
-                : 'email'
-            );
-
-        if ($field === 'invalid') {
-            return back()
-                ->withErrors([
-                    'login' => 'Invalid login credentials.',
-                ])
-                ->onlyInput('login');
-        }
-
-        $credentials[$field] = $credentials['login'];
-        unset($credentials['login']);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('handleRoles');
+            return redirect()->intended('/beranda');
         }
 
-        return back()
-            ->withErrors([
-                'login' => 'The provided credentials do not match our records.',
-            ])
-            ->onlyInput('login');
-    }
-
-
-
-    public function logout(Request $request)
-    {
-        Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
     public function handleRoles()
     {
         if (Auth::check()) {
             $roles = auth()->user()->roles;
-            if ($roles == 1) {
-                return redirect('/guru/dashboard')->with('success', 'Masuk Sebagai Admin!');
-            } elseif ($roles == 2) {
-                return redirect('/guru/dashboard')->with('success', 'Masuk Sebagai Dosen!');
+            if ($roles == 'admin') {
+                return redirect('/guru/index')->with('success', 'Masuk Sebagai Admin!');
+            } elseif ($roles == 'dosen') {
+                return redirect('/guru/index')->with('success', 'Masuk Sebagai guru!');
             } else {
-                return redirect('/mahasiswa/dashboard')->with('success', 'Masuk Sebagai Mahasiswa!');
+                return redirect('/mahasiswa/index')->with('success', 'Masuk Sebagai Siswa!');
             }
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/');
     }
 }

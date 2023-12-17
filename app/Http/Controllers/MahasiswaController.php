@@ -90,6 +90,13 @@ class MahasiswaController extends Controller
         return view('mahasiswa.detail', compact('mahasiswa'));
     }
 
+    public function profil()
+    {
+        $auth = auth()->user()->id;
+        $mahasiswa = Mahasiswa::where('users_id', $auth)->first();
+        return view('mahasiswa.profil', compact('mahasiswa')); // Changed from employee.detail to dosen.detail
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -102,8 +109,9 @@ class MahasiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mahasiswa $mahasiswa)
+    public function update(Request $request, $id)
     {
+        $mahasiswa = Mahasiswa::find($id);
         $request->validate(
             [
                 'nim' => 'required',
@@ -145,12 +153,12 @@ class MahasiswaController extends Controller
                 'alamat' => $request->alamat,
                 'kontak' => $request->kontak,
                 'email' => $request->email,
-                'prodi' => $request->prodi, // Ganti dengan atribut yang sesuai pada model Mahasiswa
+                'prodi' => $request->prodi, // Ganti dengan atribut yang sesuai pada model id
                 'semester' => $request->semester, // Ganti dengan atribut yang sesuai pada model Mahasiswa
                 'foto' => $filename,
             ]);
         } else {
-            $mahasiswa->update([
+            $id->update([
                 'nim' => $request->nim,
                 'nama' => $request->nama,
                 'tgl_lahir' => $request->tgl_lahir,

@@ -12,11 +12,17 @@ class Dosen extends Model
     protected $fillable = [
         'nip',
         'nama',
+        'codename',
         'tgl_lahir',
         'alamat',
         'kontak',
         'email',
-        'dosen_matkul',
+        'keilmuan',
         'foto',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }

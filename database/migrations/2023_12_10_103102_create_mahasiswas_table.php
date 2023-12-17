@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('users_id');
             $table->integer('nim');
             $table->string('nama');
             $table->string('alamat');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('prodi');
             $table->string('semester');
             $table->string('foto');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
