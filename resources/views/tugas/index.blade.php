@@ -5,9 +5,12 @@
         <div class="d-flex justify-content-between">
             <h2>Data Tugas</h2>
 
-            <div class="mb-3">
-                <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
-            </div>
+            @if (auth()->user()->role == 'mahasiswa')
+            @else
+                <div class="mb-3">
+                    <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
+                </div>
+            @endif
         </div>
 
         <table class="table-hover table">
@@ -36,12 +39,15 @@
                         <td>
                             <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info btn-sm">Detail</a>
                             <a href="{{ route('tugas.edit', $tugas->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form class="d-inline" action="{{ route('tugas.destroy', [$tugas->id]) }}" method="POST"
-                                onsubmit="return confirm('Yakin hapus data?')">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                            </form>
+                            @if (auth()->user()->role == 'dosen')
+                                <form class="d-inline" action="{{ route('tugas.destroy', [$tugas->id]) }}" method="POST"
+                                    onsubmit="return confirm('Yakin hapus data?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            @else
+                            @endif
                         </td>
                     </tr>
                 @endforeach

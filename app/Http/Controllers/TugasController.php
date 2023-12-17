@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\Mahasiswa;
 use App\Models\Tugas;
+use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -33,11 +36,8 @@ class TugasController extends Controller
             'matkul' => 'required',
             'semester' => 'required',
             'pertemuan' => 'required',
-            'link_tugas' => 'nullable',
-            'nilai' => 'nullable',
             'tgl_buat' => 'required',
             'tgl_deadline' => 'required',
-            'tgl_pengumpulan' => 'nullable',
         ], [
             'matkul.required' => 'Kolom Mata Kuliah tidak boleh kosong',
             'semester.required' => 'Kolom Semester tidak boleh kosong',
@@ -46,7 +46,17 @@ class TugasController extends Controller
             'tgl_deadline.required' => 'Kolom Tanggal Deadline tidak boleh kosong',
         ]);
 
-        Tugas::create($request->all());
+        $users_id = auth()->user()->id;
+        $id_dosens = Dosen::where('users_id', $users_id)->first();
+        $id = $id_dosens->id;
+        Tugas::create([
+            'id_dosens' => $id,
+            'matkul' => $request->matkul,
+            'semester' => $request->semester,
+            'pertemuan' => $request->pertemuan,
+            'tgl_buat' => $request->tgl_buat,
+            'tgl_deadline' => $request->tgl_deadline,
+        ]);
 
         return redirect()
             ->route('tugas.index')
@@ -80,11 +90,8 @@ class TugasController extends Controller
             'matkul' => 'required',
             'semester' => 'required',
             'pertemuan' => 'required',
-            'link_tugas' => 'nullable',
-            'nilai' => 'nullable',
             'tgl_buat' => 'required',
             'tgl_deadline' => 'required',
-            'tgl_pengumpulan' => 'nullable',
         ], [
             'matkul.required' => 'Kolom Mata Kuliah tidak boleh kosong',
             'semester.required' => 'Kolom Semester tidak boleh kosong',
@@ -95,6 +102,26 @@ class TugasController extends Controller
 
         $idTugas = Tugas::find($id);
         $idTugas->update($request->all());
+
+        return redirect()
+            ->route('tugas.index')
+            ->with('success', 'Data Tugas Berhasil diUpdate');
+    }
+
+    public function updateMhs(Request $request,  $id)
+    {
+        $request->validate([
+            'link_tugas' => 'nullable',
+            'tgl_pengumpulan' => 'nullable',
+        ]);
+        $users_id = auth()->user()->id;
+        $id_mhs = Mahasiswa::where('users_id', $users_id)->first();
+        $idTugas = Tugas::find($id);
+        $idTugas->update([
+            'link_tugas' => $request->link_tugas,
+            'tgl_pengumpulan' => $request->tgl_pengumpulan,
+            'id_mahasiswas' => $id_mhs->id,
+        ]);
 
         return redirect()
             ->route('tugas.index')
@@ -112,5 +139,11 @@ class TugasController extends Controller
         return redirect()
             ->route('tugas.index')
             ->with('success', 'Data Tugas berhasil dihapus');
+    }
+
+    public function pengumpulan(Request $request, $id)
+    {
+        dd($request->all());
+        $tugas = Tugas::where('id', $id)->first();
     }
 }

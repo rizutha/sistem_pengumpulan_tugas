@@ -7,7 +7,7 @@
         <h2>Detail Mahasiswa</h2>
 
         <div class="row">
-            @if ($mahasiswa->foto != null)
+            @if ($mahasiswa->foto)
                 <img src="{{ asset('storage/mahasiswa/' . $mahasiswa->foto) }}" style="width:250px"
                     class="rounded-3 col-auto" />
             @endif

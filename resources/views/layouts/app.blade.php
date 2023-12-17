@@ -122,7 +122,14 @@
                             @elseif (auth()->user()->role == 'dosen')
                                 <li>
                                     <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                                        href="/dosen">
+                                        href="/beranda">
+                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                        Beranda
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                        href="/dosen/profil">
                                         <i class="fa-solid fa-chalkboard-user"></i>
                                         Profil
                                     </a>
@@ -142,6 +149,20 @@
                                     </a>
                                 </li>
                             @elseif (auth()->user()->role == 'mahasiswa')
+                                <li>
+                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                        href="/beranda">
+                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                        Beranda
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                        href="/mahasiswa/profil">
+                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                        Profil
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                                         href="/tugas">

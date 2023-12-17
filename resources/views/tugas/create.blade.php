@@ -40,7 +40,7 @@
 
             <div class="form-group col-6">
                 <label for="pertemuan">Pertemuan:</label>
-                <select name="semester" class="form-control @if ($errors->has('semester')) is-invalid @endif">
+                <select name="pertemuan" class="form-control @if ($errors->has('pertemuan')) is-invalid @endif">
                     <option value="" selected disabled>Pertemuan</option>
                     <option value="1" {{ old('pertemuan') == '1' ? 'selected' : '' }}>Pertemuan 1</option>
                     <option value="2" {{ old('pertemuan') == '2' ? 'selected' : '' }}>Pertemuan 2</option>

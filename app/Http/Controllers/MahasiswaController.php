@@ -94,7 +94,7 @@ class MahasiswaController extends Controller
     {
         $auth = auth()->user()->id;
         $mahasiswa = Mahasiswa::where('users_id', $auth)->first();
-        return view('mahasiswa.profil', compact('mahasiswa')); // Changed from employee.detail to dosen.detail
+        return view('mahasiswa.profil', compact('mahasiswa'));
     }
 
     /**
