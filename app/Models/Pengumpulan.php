@@ -11,9 +11,9 @@ class Pengumpulan extends Model
     protected $table = 'pengumpulans';
     protected $guarded = [''];
 
-    public function dosen()
+    public function tugas()
     {
-        return $this->belongsTo(Dosen::class, 'id_tugass');
+        return $this->belongsTo(Tugas::class, 'id_tugass');
     }
     public function mahasiswa()
     {

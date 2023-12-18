@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mahasiswas');
             $table->string('link')->nullable();
             $table->integer('nilai')->nullable();
-            $table->timestamp('tgl_pengumpulan')->nullable();
-            $table->foreign('id_tugass')->references('id')->on('mahasiswas');
+            $table->timestamps();
+            $table->foreign('id_tugass')->references('id')->on('tugass');
             $table->foreign('id_mahasiswas')->references('id')->on('mahasiswas');
         });
     }

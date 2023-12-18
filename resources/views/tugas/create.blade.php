@@ -67,18 +67,6 @@
                 <label for="tgl_deadline">Tanggal Deadline:</label>
                 <input type="date" class="form-control" id="tgl_deadline" name="tgl_deadline" required>
             </div>
-            <div class="form-group col-6">
-                <label for="tgl_pengumpulan">Tanggal Pengumpulan:</label>
-                <input type="date" class="form-control" id="tgl_pengumpulan" name="tgl_pengumpulan">
-            </div>
-            <div class="form-group col-6">
-                <label for="link_tugas">Link Tugas:</label>
-                <input type="text" class="form-control" id="link_tugas" name="link_tugas">
-            </div>
-            <div class="form-group col-6">
-                <label for="nilai">Nilai:</label>
-                <input type="number" class="form-control" id="nilai" name="nilai">
-            </div>
             <div class="d-flex justify-content-end mt-3">
                 <button type="submit" class="btn btn-primary me-3">Simpan</button>
                 <a href="{{ route('tugas.index') }}" class="btn btn-secondary">Kembali</a>

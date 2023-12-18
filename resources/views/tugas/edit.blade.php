@@ -42,23 +42,23 @@
         @else
         @endif
         @if (auth()->user()->role == 'mahasiswa')
-            <form action="/tugas/{id}/pengumpulan" method="POST">
+            <form action="/tugas/{{ $tugas->id }}/pengumpulan" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="link_tugas">Link Tugas:</label>
-                    <input type="text" class="form-control" id="link_tugas" name="link_tugas"
-                        value="{{ old('link_tugas') }}">
+                    <label for="link">Link Tugas:</label>
+                    <input type="text" class="form-control" id="link" name="link" value="{{ old('link') }}">
                 </div>
-                <div class="form-group">
-                    <label for="tgl_pengumpulan">Tanggal Pengumpulan:</label>
-                    <input type="date" class="form-control" id="tgl_pengumpulan" name="tgl_pengumpulan"
-                        value="{{ old('tgl_pengumpulan') }}">
-                </div>
-
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{{ route('tugas.index') }}" class="btn btn-secondary">Kembali</a>
             </form>
-        @else
+        @elseif (auth()->user()->role == 'dosen')
+            <form action="/tugas/{{ $tugas->id }}/pengumpulan" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="nilai">Nilai Tugas:</label>
+                    <input type="text" class="form-control" id="nilai" name="nilai" value="{{ old('nilai') }}">
+                </div>
+            </form>
         @endif
     </div>
 @endsection

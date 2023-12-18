@@ -195,8 +195,7 @@
                                     <i class="fa-solid fa-screwdriver-wrench"></i>
                                 </div>
                                 <div>Dashboard
-                                    <div class="page-title-subheading">👋 Hai!, Bpk/Ibu guru
-                                        SD Negeri Kesamiran 01.
+                                    <div class="page-title-subheading">Selamat datang! {{ auth()->user()->name }}
                                     </div>
                                 </div>
                             </div>

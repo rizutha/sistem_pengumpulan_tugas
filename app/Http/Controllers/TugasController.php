@@ -16,7 +16,11 @@ class TugasController extends Controller
     public function index()
     {
         $query = Tugas::orderBy('id', 'asc')->paginate(5);
-        return view('tugas.index', ['queries' => $query]);
+        $pengumpulan = Pengumpulan::orderBy('id', 'asc')->paginate(5);
+        return view('tugas.index', [
+            'queries' => $query,
+            'pengumpulan' => $pengumpulan,
+        ]);
     }
 
     /**
@@ -143,7 +147,23 @@ class TugasController extends Controller
 
     public function pengumpulan(Request $request, $id)
     {
-        dd($request->all());
+        $request->validate([
+            'link' => 'nullable',
+            'nilai' => 'nullable',
+        ]);
+
+        $users_id = auth()->user()->id;
+        $id_mhs = Mahasiswa::where('users_id', $users_id)->first();
         $tugas = Tugas::where('id', $id)->first();
+        Pengumpulan::create([
+            'id_tugass' => $tugas->id,
+            'id_mahasiswas' => $id_mhs->id,
+            'link' => $tugas->link,
+            'nilai' => $tugas->nilai,
+        ]);
+
+        return redirect()
+            ->route('tugas.index')
+            ->with('success', 'Data Tugas Berhasil diUpdate');
     }
 }

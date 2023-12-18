@@ -29,7 +29,7 @@ Route::post('/login', [AuthController::class, 'auth']);
 Route::get('/tugas/create', [TugasController::class, 'create'])->name('tugas.create');
 Route::post('/tugas', [TugasController::class, 'store'])->name('tugas.store');
 Route::get('/tugas/{id}/edit', [TugasController::class, 'edit'])->name('tugas.edit');
-Route::get('/tugas/{id}/pengumpulan', [TugasController::class, 'pengumpulan']);
+Route::post('/tugas/{id}/pengumpulan', [TugasController::class, 'pengumpulan']);
 Route::get('/tugas/{id}', [TugasController::class, 'show'])->name('tugas.show');
 Route::post('/tugas/{id}', [TugasController::class, 'update']);
 Route::post('/tugas/{id}/update', [TugasController::class, 'updateMhs']);
