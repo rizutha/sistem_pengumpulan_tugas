@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('users_id');
             $table->integer('nim');
-            $table->string('nama');
             $table->string('alamat');
             $table->date('tgl_lahir');
             $table->string('kontak');

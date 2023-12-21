@@ -48,11 +48,22 @@ Route::delete('/dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.d
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
 Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
 Route::get('/mahasiswa/profil', [MahasiswaController::class, 'profil'])->name('mahasiswa.profil');
-Route::post('/mahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
 Route::get('/mahasiswa/{id}', [MahasiswaController::class, 'show'])->name('mahasiswa.show');
 Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
 Route::post('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
 Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/akun', [AuthController::class, 'index']);
+Route::get('/akun/create', [AuthController::class, 'create']);
+Route::get('/akun/detail/{id}', [AuthController::class, 'detail']);
+Route::get('/akun/edit/{id}', [AuthController::class, 'edit']);
+Route::post('/akun/store', [AuthController::class, 'store']);
+Route::post('/akun/update/{id}', [AuthController::class, 'akunUpdate']);
+Route::get('/akun/{id}', [AuthController::class, 'show'])->name('mahasiswa.show');
+Route::post('/akun/{id}', [AuthController::class, 'update']);
+Route::delete('/akun/destroy/{id}', [AuthController::class, 'destroy']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/tugasmhs', function () {

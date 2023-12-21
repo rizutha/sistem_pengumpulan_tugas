@@ -21,16 +21,6 @@
                         @enderror
                     </div>
                     <div class="row py-2">
-                        <label for="nama">Nama <span class="text-danger">*</span></label>
-                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
-                            placeholder="Masukkan Nama" value="{{ $mahasiswa->nama }}">
-                        @error('nama')
-                            <small class="text-danger">
-                                {{ $message }}
-                            </small>
-                        @enderror
-                    </div>
-                    <div class="row py-2">
                         <label for="tgl_lahir">Tanggal Lahir <span class="text-danger">*</span></label>
                         <input type="date" name="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror"
                             placeholder="Masukkan Tanggal Lahir" value="{{ $mahasiswa->tgl_lahir }}">

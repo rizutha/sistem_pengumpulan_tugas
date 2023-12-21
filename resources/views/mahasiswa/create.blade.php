@@ -23,17 +23,26 @@
                                     </small>
                                 @enderror
                             </div>
+
                             <div class="row py-2">
-                                <label for="nama">Nama <span class="text-danger">*</span></label>
-                                <input type="text" name="nama"
-                                    class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama"
-                                    value="{{ old('nama') }}">
-                                @error('nama')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
+                                <label for="akun_id">Nama <span class="text-danger">*</span></label>
+                                <select name="akun_id"
+                                    class="form-control @if ($errors->has('akun_id')) is-invalid @endif">
+                                    <option value="" selected disabled>Pilih Akun</option>
+                                    @foreach ($akun as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('akun_id') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('akun_id'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('akun_id') }}
+                                    </div>
+                                @endif
                             </div>
+
                             <div class="row py-2">
                                 <label for="tgl_lahir">Tanggal Lahir <span class="text-danger">*</span></label>
                                 <input type="date" name="tgl_lahir"

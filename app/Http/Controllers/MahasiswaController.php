@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +23,9 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $akun = User::all();
+
+        return view('mahasiswa.create', ['akun' => $akun]);
     }
 
     /**
@@ -30,10 +33,11 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate(
             [
                 'nim' => 'required',
-                'nama' => 'required',
+                'users_id' => 'required',
                 'tgl_lahir' => 'required',
                 'alamat' => 'required',
                 'kontak' => 'required',
@@ -44,7 +48,7 @@ class MahasiswaController extends Controller
             ],
             [
                 'nim.required' => 'Kolom NIM tidak boleh kosong',
-                'nama.required' => 'Kolom Nama tidak boleh kosong',
+                'users_id.required' => 'Kolom Nama tidak boleh kosong',
                 'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
                 'alamat.required' => 'Kolom Alamat tidak boleh kosong',
                 'kontak.required' => 'Kolom Kontak tidak boleh kosong',
@@ -66,7 +70,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create([
             'nim' => $request->nim,
-            'nama' => $request->nama,
+            'users_id' => $request->has('users_id') ? $request->users_id : auth()->user()->id,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
             'kontak' => $request->kontak,

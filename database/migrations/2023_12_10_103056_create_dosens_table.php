@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('users_id');
             $table->integer('nip');
-            $table->string('nama');
             $table->string('codename');
             $table->date('tgl_lahir');
             $table->string('alamat');
             $table->string('kontak');
-            $table->string('email');
             $table->string('keilmuan');
             $table->string('foto');
             $table->foreign('users_id')->references('id')->on('users');
