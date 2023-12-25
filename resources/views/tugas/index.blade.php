@@ -77,7 +77,7 @@
                         <tr>
                             <td>{{ $pengumpulan->id }}</td>
                             <td>{{ $pengumpulan->tugas->matkul }}</td>
-                            <td>{{ $pengumpulan->mahasiswa->nama }}</td>
+                            <td>{{ $pengumpulan->mahasiswa->user->name }}</td>
                             <td>{{ $pengumpulan->link }}</td>
                             <td>{{ $pengumpulan->created_at }}</td>
                             <td>{{ $pengumpulan->nilai }}</td>

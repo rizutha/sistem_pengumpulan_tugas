@@ -16,7 +16,6 @@ class MahasiswaSeeder extends Seeder
         Mahasiswa::insert([
             [
                 'nim' => '12121212',
-                'nama' => 'Rifqi',
                 'alamat' => 'Brebes',
                 'tgl_lahir' => '2002-10-12',
                 'kontak' => '089121212121',
@@ -28,7 +27,6 @@ class MahasiswaSeeder extends Seeder
             ],
             [
                 'nim' => '13131313',
-                'nama' => 'Ahmad',
                 'alamat' => 'Tegal',
                 'tgl_lahir' => '2002-10-13',
                 'kontak' => '089131313131',

@@ -73,7 +73,11 @@ class TugasController extends Controller
     public function show($id)
     {
         $tugas = Tugas::findOrFail($id);
-        return view('tugas.detail', compact('tugas'));
+        $pengumpulan = Pengumpulan::findOrFail($id);
+        return view('tugas.detail', [
+            'tugas' => $tugas,
+            'pengumpulan' => $pengumpulan,
+        ]);
     }
 
     /**
@@ -147,6 +151,7 @@ class TugasController extends Controller
 
     public function pengumpulan(Request $request, $id)
     {
+        dd($request->all());
         $request->validate([
             'link' => 'nullable',
             'nilai' => 'nullable',

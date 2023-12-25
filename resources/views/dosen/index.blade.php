@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{ $dosen->id }}</td>
                         <td>{{ $dosen->nip }}</td>
-                        <td>{{ $dosen->nama }}</td>
+                        <td>{{ $dosen->user->name }}</td>
                         <td>{{ $dosen->tgl_lahir }}</td>
                         <td>{{ $dosen->alamat }}</td>
                         <td>{{ $dosen->kontak }}</td>

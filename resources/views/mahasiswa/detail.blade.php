@@ -14,7 +14,7 @@
             {{-- Informasi Dasar --}}
             <div class="col-auto">
                 <div class="row">
-                    <h4>{{ $mahasiswa->nama }}</h4>
+                    <h4>{{ $mahasiswa->user->name }}</h4>
                     <p class="fw-bold">{{ $mahasiswa->nim }}</p>
                 </div>
                 <p class="card-text">Tanggal Lahir: {{ $mahasiswa->tgl_lahir }}</p>

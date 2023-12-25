@@ -9,7 +9,7 @@
                 <h5 class="card-title">Mata Kuliah: {{ $tugas->matkul }}</h5>
                 <p class="card-text">Semester: {{ $tugas->semester }}</p>
                 <p class="card-text">Pertemuan: {{ $tugas->pertemuan }}</p>
-                <p class="card-text">Mahasiswa: {{ $tugas->mahasiswa->nama }}</p>
+                <p class="card-text">Mahasiswa: {{ $pengumpulan->mahasiswa->user->name }}</p>
                 <p class="card-text">Link Tugas: {{ $tugas->link_tugas }}</p>
                 <p class="card-text">Nilai: {{ $tugas->nilai }}</p>
                 <p class="card-text">Tanggal Pembuatan: {{ $tugas->tgl_buat }}</p>
