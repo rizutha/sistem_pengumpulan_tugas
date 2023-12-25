@@ -5,7 +5,6 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengumpulanController;
 use App\Http\Controllers\TugasController;
-use App\Models\Dosen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,33 +55,22 @@ Route::group(['middleware' => 'checkRole:dosen'], function () {
     Route::get('/profildsn', [DosenController::class, 'showProfil'])->name('profildsn');
     Route::get('datamhs', [DosenController::class, 'showMahasiswa'])->name('datamhs');
     Route::get('/detailmhs/{id}', [DosenController::class, 'detail'])->name('detailmhs');
+    Route::get('/tugas/pengumpulans', [PengumpulanController::class, 'indexDosen'])->name('pengumpulan.indexDosen');
+    Route::get('/tugas/{id}/pengumpulanedit', [PengumpulanController::class, 'edit'])->name('pengumpulan.edit');
+    Route::put('/tugas/pengumpulans/{id}', [PengumpulanController::class, 'update'])->name('pengumpulan.update');
 
 });
 Route::group(['middleware' => 'checkRole:mahasiswa'], function () {
 
     Route::get('/tugasmhs', [TugasController::class, 'detail'])->name('tugasmhs');
     Route::get('/profilmhs', [MahasiswaController::class, 'showProfil'])->name('profilmhs');
-    Route::post('/pengumpulan', [PengumpulanController::class, 'create'])->name('pengumpulan.create');
+    Route::get('/pengumpulan', [PengumpulanController::class, 'index'])->name('pengumpulan.index');
 
 });
 
-// ...
 
-// Rute untuk menampilkan halaman index pengumpulan
-Route::get('/pengumpulan', [PengumpulanController::class, 'index'])->name('pengumpulan.index');
+// Pada file web.php
 
-// Rute untuk menampilkan formulir submit tugas
-Route::get('/pengumpulan/create', [PengumpulanController::class, 'create'])->name('pengumpulan.create');
 
-// Rute untuk memproses submit tugas
-Route::post('/pengumpulan/create', [PengumpulanController::class, 'store'])->name('pengumpulan.store');
-
-// Rute untuk menampilkan halaman edit pengumpulan
-Route::get('/pengumpulan/{id}/edit', [PengumpulanController::class, 'edit'])->name('pengumpulan.edit');
-
-// Rute untuk memproses edit pengumpulan
-Route::put('/pengumpulan/{id}', [PengumpulanController::class, 'update'])->name('pengumpulan.update');
-
-// ...
 
 Route::get('/logout', [AuthController::class, 'logout']);

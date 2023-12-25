@@ -12,28 +12,27 @@
                 <tr>
                     <th>ID</th>
                     <th>Mahasiswa</th>
-                    <th>Tugas</th>
+                    {{-- <th>Matakuliah</th> --}}
+                    <th>Tanggal Pengumpulan</th>
                     <th>Link Tugas</th>
                     <th>Nilai</th>
                     <th>Komentar</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pengumpulans as $pengumpulan)
+                @foreach ($query as $pengumpulan)
                     <tr>
-                        <td>{{ $pengumpulan->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $pengumpulan->mahasiswa->nama }}</td>
-                        <td>{{ $pengumpulan->tugas->matkul }}</td>
+                        {{-- <td>{{ $pengumpulan->tugas->matkul }}</td> --}}
+                        <td>{{ $pengumpulan->tgl_pengumpulan }}</td>
                         <td>{{ $pengumpulan->link_tugas }}</td>
                         <td>{{ $pengumpulan->nilai }}</td>
                         <td>{{ $pengumpulan->komentar }}</td>
-                        <td>
-                            <a href="{{ route('pengumpulan.edit', $pengumpulan->id) }}" class="btn btn-warning">Edit</a>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
-        </table>        
+        </table>     
+        <a href="{{ route('tugasmhs') }}" class="btn btn-secondary mt-3">Kembali</a>   
     </div>
 @endsection

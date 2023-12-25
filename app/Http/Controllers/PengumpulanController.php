@@ -3,68 +3,86 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengumpulan;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengumpulanController extends Controller
 {
     // PengumpulanController.php
     public function index()
     {
-        $pengumpulans = Pengumpulan::with(['mahasiswa', 'tugas'])->get();
-        
-        return view('pengumpulan.index', compact('pengumpulans'));
+        $query = Pengumpulan::with('mahasiswa', 'tugas')->get();
+        return view('pengumpulan.index', compact('query'));
     }
-
-
-    public function store(Request $request)
+    public function create(Request $request)
     {
+        // Ambil data dari query string
+        $tugasId = $request->query('tugas_id');
+        $linkTugas = $request->query('link_tugas');
+
         // Validasi request jika diperlukan
-        $request->validate([
-            'tugas_id' => 'required|exists:tugass,id',
-            'link_tugas' => 'required|url', // Sesuaikan dengan validasi yang dibutuhkan
-        ]);
-
-        // Simpan data pengumpulan ke dalam database
-        $pengumpulan = new Pengumpulan([
-            'id_tugass' => $request->input('tugas_id'),
-            'id_mahasiswas' => auth()->user()->mahasiswa->id,
-            'link_tugas' => $request->input('link_tugas'),
-            'tgl_pengumpulan' => now(),
-        ]);
-
-        $pengumpulan->save();
-
-        // Berikan respons redirect ke halaman index pengumpulan
-        return redirect()->route('pengumpulan.index')->with('success', 'Tugas berhasil diumpulkan.');
-    }
-
-
-    public function edit($id)
-    {
-        // Mendapatkan data pengumpulan yang akan diedit
-        $pengumpulan = Pengumpulan::findOrFail($id);
-
-        // Validasi atau cek apakah pengguna yang mengakses adalah dosen yang berhak
         // ...
 
-        return view('pengumpulan.edit', compact('pengumpulan'));
+        try {
+            // Cari data pengumpulan berdasarkan tugas_id dan id_mahasiswas
+            $pengumpulan = Pengumpulan::where('id_tugass', $tugasId)
+                ->where('id_mahasiswas', auth()->user()->mahasiswa->id)
+                ->firstOrFail();
+
+            // Jika data pengumpulan sudah ada, lakukan update
+            $pengumpulan->link_tugas = $linkTugas;
+            $pengumpulan->tgl_pengumpulan = now();
+            $pengumpulan->save();
+
+            // Berikan respons atau arahkan ke halaman yang sesuai
+            return redirect()->route('pengumpulan.index')->with('success', 'Link tugas berhasil diperbarui.');
+        } catch (ModelNotFoundException $e) {
+            // Jika data pengumpulan belum ada, buat entri baru
+            $pengumpulanBaru = new Pengumpulan([
+                'id_tugass' => $tugasId,
+                'id_mahasiswas' => auth()->user()->mahasiswa->id,
+                
+                'link_tugas' => $linkTugas,
+                'tgl_pengumpulan' => now(),
+            ]);
+
+            $pengumpulanBaru->save();
+
+            // Berikan respons atau arahkan ke halaman yang sesuai
+            return redirect()->route('pengumpulan.index')->with('success', 'Tugas berhasil diumpulkan.');
+        }
+    }
+
+    // PengumpulanController.php
+    public function edit($id)
+    {
+        $pengumpulan = Pengumpulan::find($id);
+
+        return view('tugas.pengumpulanedit', compact('pengumpulan'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validasi form edit nilai dan komentar oleh dosen
-        $request->validate([
-            'nilai' => 'required|numeric',
-            'komentar' => 'nullable|string',
-        ]);
-
-        // Simpan perubahan nilai dan komentar
         $pengumpulan = Pengumpulan::findOrFail($id);
-        $pengumpulan->update([
-            'nilai' => $request->input('nilai'),
-            'komentar' => $request->input('komentar'),
-        ]);
 
-        return redirect()->back()->with('success', 'Nilai dan komentar berhasil diupdate');
+        $pengumpulan->nilai = $request->input('nilai');
+        $pengumpulan->komentar = $request->input('komentar');
+        $pengumpulan->save();
+
+        return redirect()->route('tugas.index')->with('success', 'Nilai dan komentar berhasil diperbarui.');
     }
+
+    public function indexDosen()
+    {
+        $dosenId = Auth::user()->dosen->id;
+
+        // Ambil data pengumpulan berdasarkan id dosen
+        $pengumpulans = Pengumpulan::whereHas('tugas', function ($query) use ($dosenId) {
+            $query->where('id_dosens', $dosenId);
+        })->get();
+
+        return view('tugas.pengumpulans', compact('pengumpulans'));
+    }
+
 }

@@ -7,6 +7,7 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Pengumpulan;
 use App\Models\Tugas;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DosenController extends Controller
@@ -175,10 +176,17 @@ class DosenController extends Controller
         return view('dosen.tugas', compact('dosen', 'tugas'));
     }
 
-    public function pengumpulanTugas($idTugas)
+    public function pengumpulanTugas()
     {
-        $pengumpulan = Pengumpulan::where('tugas_id', $idTugas)->get();
-        return view('dosen.pengumpulan_tugas', compact('pengumpulanTugas'));
+        $user = Auth::user();
+        $tugasDiajar = $user->dosen->tugas;
+
+        $pengumpulan = Pengumpulan::whereIn('id_tugass', $tugasDiajar->pluck('id'))->get();
+
+        return view('dosen.pengumpulan_tugas', compact('pengumpulan'));
+   
+        // $pengumpulan = Pengumpulan::where('tugas_id', $idTugas)->get();
+        // return view('dosen.pengumpulan_tugas', compact('pengumpulanTugas'));
     }
 
     // Tambahkan metode lain sesuai kebutuhan

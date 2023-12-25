@@ -6,12 +6,10 @@
 <div class="rounded-2 bg-light container mb-5 mt-5 p-5 shadow-lg">
     <div class="d-flex justify-content-between">
         <h2>Data Tugas</h2>
-        @if (auth()->user()->role == 'mahasiswa')
-        @else
+
             <div class="mb-3">
-                <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
+                <a href="/pengumpulan" class="btn btn-primary">Tugas Selesai</a>
             </div>
-        @endif
     </div>
 
     <table class="table-hover table">
@@ -39,13 +37,13 @@
                     <td>
                         @if ($tugas->file_tugas)
                             <a href="{{ asset('storage/filetugas/' . $tugas->file_tugas) }}"
-                                class="btn btn-success">Download</a>
+                                class="btn btn-success btn-sm">Download</a>
                         @else
                             Tidak ada file
                         @endif
                     </td>
                     <td>
-                        <button class="btn btn-primary" onclick="showInputForm({{ $tugas->id }})">Kerjakan</button>
+                        <button class="btn btn-primary btn-sm" onclick="showInputForm({{ $tugas->id }})">Kerjakan</button>
 
                     </td>
                 </tr>
@@ -54,8 +52,9 @@
     </table>
     {{ $queries->links() }}
 </div>
+
 <script>
-    function showInputForm(tugasId) {
+function showInputForm(tugasId) {
     Swal.fire({
         title: 'Input Link Tugas',
         html:
@@ -73,41 +72,12 @@
         if (result.isConfirmed) {
             const linkTugas = result.value.linkTugas;
 
-            // Kirim linkJawaban ke server menggunakan AJAX atau metode lainnya
-            // Contoh menggunakan fetch
-            fetch('/pengumpulan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Sesuaikan dengan metode pengiriman CSRF token di aplikasi Anda
-                },
-                body: JSON.stringify({
-                    tugas_id: tugasId,
-                    link_tugas: linkTugas
-                    // tambahkan data lain yang diperlukan
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Tanggapi respons dari server
-                console.log(data);
-
-                // Tampilkan pesan sukses atau error menggunakan SweetAlert
-                if (data.success) {
-                    Swal.fire('Sukses!', 'Tugas berhasil diumpulkan.', 'success');
-                } else {
-                    Swal.fire('Error!', 'Gagal mengumpulkan tugas.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-
-                // Tampilkan pesan error menggunakan SweetAlert
-                Swal.fire('Error!', 'Terjadi kesalahan saat mengumpulkan tugas.', 'error');
-            });
+            // Arahkan pengguna ke rute pengumpulan/create dengan tugas_id dan link_tugas
+            window.location.href = `/pengumpulan/create?tugas_id=${tugasId}&link_tugas=${linkTugas}`;
         }
     });
 }
+
 
 </script>
 

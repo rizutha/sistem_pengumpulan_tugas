@@ -9,7 +9,8 @@ class Tugas extends Model
 {
     use HasFactory;
     protected $table = 'tugass';
-    protected $guarded = [''];
+    protected $primaryKey ="id";
+    protected $fillable = ['id','id_dosens','id_mahasiswas','matkul','semester','pertemuan','tgl_buat','tgl_dl','file_tugas'];
 
     public function dosen()
     {

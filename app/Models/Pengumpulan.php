@@ -9,7 +9,7 @@ class Pengumpulan extends Model
 {
     use HasFactory;
     protected $table = 'pengumpulans';
-    protected $guarded = [''];
+    protected $fillable =['id_mahasiswas', 'id_tugass', 'link_tugas','nilai','tgl_pengumpulan', 'komentar'];
 
     public function dosen()
     {
@@ -21,6 +21,6 @@ class Pengumpulan extends Model
     }
     public function tugas()
     {
-        return $this->belongsTo(Tugas::class, 'id_tugas');
+        return $this->belongsTo(Tugas::class, 'id_tugass');
     }
 }

@@ -5,6 +5,7 @@
         <div class="d-flex justify-content-between">
             <h2>Data Tugas</h2>
                 <div class="mb-3">
+                    <a href="/tugas/pengumpulans" class="btn btn-primary">Penilaian</a>
                     <a href="{{ route('tugas.create') }}" class="btn btn-primary">Tambah Tugas</a>
                 </div>
         </div>
@@ -33,7 +34,7 @@
                         <td>{{ $tugas->tgl_dl }}</td>
                         <td>
                             @if ($tugas->file_tugas)
-                                <a href="{{ asset('storage/filetugas/' . $tugas->file_tugas) }}" class="btn btn-success">Download</a>
+                                <a href="{{ asset('storage/filetugas/' . $tugas->file_tugas) }}" class="btn btn-success btn-sm">Download</a>
                             @else
                                 Tidak ada file
                             @endif
