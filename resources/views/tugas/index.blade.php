@@ -20,7 +20,6 @@
                     <th>Mata Kuliah</th>
                     <th>Semester</th>
                     <th>Pertemuan</th>
-                    <th>Nilai</th>
                     <th>Tanggal Buat</th>
                     <th>Tanggal Deadline</th>
                     <th>Aksi</th>
@@ -33,7 +32,6 @@
                         <td>{{ $tugas->matkul }}</td>
                         <td>{{ $tugas->semester }}</td>
                         <td>{{ $tugas->pertemuan }}</td>
-                        <td>{{ $tugas->nilai }}</td>
                         <td>{{ $tugas->tgl_buat }}</td>
                         <td>{{ $tugas->tgl_deadline }}</td>
                         <td>
