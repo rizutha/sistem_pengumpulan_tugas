@@ -43,6 +43,16 @@ Route::group(['middleware' => 'checkRole:admin'], function () {
     Route::get('/dosen/{id}', [DosenController::class, 'show'])->name('dosen.show');
     Route::delete('/dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
 
+    Route::get('/akun', [AuthController::class, 'index']);
+Route::get('/akun/create', [AuthController::class, 'create']);
+Route::get('/akun/detail/{id}', [AuthController::class, 'detail']);
+Route::get('/akun/edit/{id}', [AuthController::class, 'edit']);
+Route::post('/akun/store', [AuthController::class, 'store']);
+Route::post('/akun/update/{id}', [AuthController::class, 'akunUpdate']);
+Route::get('/akun/{id}', [AuthController::class, 'show'])->name('mahasiswa.show');
+Route::post('/akun/{id}', [AuthController::class, 'update']);
+Route::delete('/akun/destroy/{id}', [AuthController::class, 'destroy']);
+
 });
 Route::group(['middleware' => 'checkRole:dosen'], function () {
 
@@ -65,6 +75,8 @@ Route::group(['middleware' => 'checkRole:mahasiswa'], function () {
     Route::get('/tugasmhs', [TugasController::class, 'detail'])->name('tugasmhs');
     Route::get('/profilmhs', [MahasiswaController::class, 'showProfil'])->name('profilmhs');
     Route::get('/pengumpulan', [PengumpulanController::class, 'index'])->name('pengumpulan.index');
+    Route::get('/pengumpulantugas', [PengumpulanController::class, 'mhsindex'])->name('pengumpulan.index');
+    Route::get('/pengumpulan/create', [PengumpulanController::class, 'create'])->name('pengumpulan.create');
 
 });
 

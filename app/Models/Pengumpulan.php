@@ -9,7 +9,7 @@ class Pengumpulan extends Model
 {
     use HasFactory;
     protected $table = 'pengumpulans';
-    protected $fillable =['id_mahasiswas', 'id_tugass', 'link_tugas','nilai','tgl_pengumpulan', 'komentar'];
+    protected $guarded =[''];
 
     public function dosen()
     {

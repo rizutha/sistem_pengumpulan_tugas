@@ -8,18 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dosen extends Model
 {
     protected $table = 'dosens';
-    protected $fillable = [
-        'users_id',
-        'nip',
-        'nama',
-        'codename',
-        'tgl_lahir',
-        'alamat',
-        'kontak',
-        'email',
-        'keilmuan',
-        'foto',
-    ];
+    protected $guarded = [''];
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id');

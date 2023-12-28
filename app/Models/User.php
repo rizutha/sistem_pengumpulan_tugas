@@ -17,14 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
+    protected $guarded = [''];
 
-        
-    ];
     public function dosen()
     {
         return $this->hasOne(Dosen::class, 'users_id');

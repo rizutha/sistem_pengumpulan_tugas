@@ -10,7 +10,7 @@ class Tugas extends Model
     use HasFactory;
     protected $table = 'tugass';
     protected $primaryKey ="id";
-    protected $fillable = ['id','id_dosens','id_mahasiswas','matkul','semester','pertemuan','tgl_buat','tgl_dl','file_tugas'];
+    protected $guarded = [''];
 
     public function dosen()
     {

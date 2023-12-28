@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
                 'email' => 'required|email',
                 'prodi' => 'required',
                 'semester' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,jfif,svg|max:10000',
             ],
             [
                 'nim.required' => 'Kolom NIM tidak boleh kosong',
@@ -97,7 +97,7 @@ class MahasiswaController extends Controller
                 'email' => 'required|email',
                 'prodi' => 'required',
                 'semester' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,jfif,svg|max:10000',
             ],
             [
                 'nim.required' => 'Kolom NIM tidak boleh kosong',
@@ -152,12 +152,12 @@ class MahasiswaController extends Controller
 
    public function destroy($id)
    {
-       
+
        $mahasiswa = Mahasiswa::findOrFail($id);
        // Hapus mahasiswa dari database
        $mahasiswa->delete();
        Storage::delete('public/mahasiswa/' . $mahasiswa->foto);
-   
+
        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil dihapus');
    }
    public function showProfil()
@@ -168,7 +168,7 @@ class MahasiswaController extends Controller
 
     return view('profilmhs', compact('mahasiswa'));
     }
-   
+
     public function kumpulkanTugas(Request $request)
     {
         // Validasi data

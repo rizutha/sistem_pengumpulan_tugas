@@ -35,7 +35,7 @@ class DosenController extends Controller
                 'kontak' => 'required',
                 'email' => 'required|email',
                 'keilmuan' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,jfif,gif,svg|max:10000',
             ],
             [
                 'nip.required' => 'Kolom NIP tidak boleh kosong',
@@ -102,10 +102,10 @@ class DosenController extends Controller
             'kontak' => 'required',
             'email' => 'required|email',
             'keilmuan' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10000',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,jfif,gif|max:10000',
         ],
         [
-            'nip.required' => 'Kolom NIP tidak boleh kosong',                                                                                                                                                                                  
+            'nip.required' => 'Kolom NIP tidak boleh kosong',
             'nama.required' => 'Kolom Nama tidak boleh kosong',
             'codename.required' => 'Kode Dosen tidak boleh kosong',
             'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
@@ -184,7 +184,7 @@ class DosenController extends Controller
         $pengumpulan = Pengumpulan::whereIn('id_tugass', $tugasDiajar->pluck('id'))->get();
 
         return view('dosen.pengumpulan_tugas', compact('pengumpulan'));
-   
+
         // $pengumpulan = Pengumpulan::where('tugas_id', $idTugas)->get();
         // return view('dosen.pengumpulan_tugas', compact('pengumpulanTugas'));
     }

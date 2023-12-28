@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     use HasFactory;
-    protected $fillable = ['users_id', 'nim', 'nama', 'tgl_lahir', 'alamat', 'kontak', 'email', 'prodi','semester', 'foto', ];
+    protected $guarded = [''];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function pengumpulan()

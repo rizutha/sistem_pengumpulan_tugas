@@ -8,21 +8,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Sistem Manajemen Tugas</title>
     <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/x-icon">
+    <link href="{{ asset('assets/hamburger.css') }}" rel="stylesheet">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 
 </head>
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap JS Bundle with Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -35,10 +34,10 @@
                 <div class=""><img width="75px" src="" alt=""></div>
                 <div class="header__pane ml-auto">
                     <div>
-                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                        <button type="button" class="hamburgerz close-sidebar-btn hamburger--spin"
                             data-class="closed-sidebar">
                             <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
+                                <span class="hamburger-innerz"></span>
                             </span>
                         </button>
                     </div>
@@ -46,9 +45,9 @@
             </div>
             <div class="app-header__mobile-menu">
                 <div>
-                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                    <button type="button" class="hamburgerz hamburger--spin mobile-toggle-nav">
                         <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
+                            <span class="hamburger-innerz"></span>
                         </span>
                     </button>
                 </div>
@@ -60,10 +59,10 @@
                     <div class="logo-src"></div>
                     <div class="header__pane ml-auto">
                         <div>
-                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                            <button type="button" class="hamburgerz close-sidebar-btn hamburger--spin"
                                 data-class="closed-sidebar">
                                 <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
+                                    <span class="hamburger-innerz"></span>
                                 </span>
                             </button>
                         </div>
@@ -71,9 +70,9 @@
                 </div>
                 <div class="app-header__mobile-menu">
                     <div>
-                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <button type="button" class="hamburgerz hamburger--spin mobile-toggle-nav">
                             <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
+                                <span class="hamburger-innerz"></span>
                             </span>
                         </button>
                     </div>
@@ -99,6 +98,13 @@
                                         href="/beranda">
                                         <i class="fa-solid fa-chalkboard-user"></i>
                                         Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                        href="/akun">
+                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                        Akun
                                     </a>
                                 </li>
                                 <li>
@@ -206,7 +212,8 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
