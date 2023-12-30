@@ -13,7 +13,7 @@ use PDF;
 class TugasController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * dd(request).
      */
     public function index()
     {
@@ -129,7 +129,7 @@ class TugasController extends Controller
             'file_tugas.mimes' => 'Tipe File harus PDF',
             'file_tugas.max' => 'Ukuran file tidak boleh dari 10 MB',
         ]);
-        
+
         // Upload foto jika ada
         if ($request->hasFile('file_tugas')) {
             Storage::delete('storage/filetugas/' . $tugas->file_tugas);
