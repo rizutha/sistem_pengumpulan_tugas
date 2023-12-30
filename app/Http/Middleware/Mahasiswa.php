@@ -15,9 +15,9 @@ class Mahasiswa
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->roles != 3) {
+        if (auth()->check() && auth()->user()->roles != 'dosen') {
             return redirect()->back()->with('message', 'Errors!! Anda Mencoba Akses Dosen.');
-         }
+        }
         return $next($request);
     }
 }

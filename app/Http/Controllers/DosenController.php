@@ -35,23 +35,25 @@ class DosenController extends Controller
             [
                 'nip' => 'required|integer', // Changed from telepon to nip
                 'nama' => 'required',
+                'codename' => 'required',
                 'tgl_lahir' => 'required|date',
                 'alamat' => 'required',
                 'kontak' => 'required',
                 'email' => 'required|email',
-                'dosen_matkul' => 'required',
+                'keilmuan' => 'required',
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
                 'nip.required' => 'Kolom NIP tidak boleh kosong',
                 'nip.integer' => 'NIP harus berupa angka',
+                'codename' => 'Kode Dosen tidak boleh kosong',
                 'nama.required' => 'Kolom Nama tidak boleh kosong',
                 'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
                 'alamat.required' => 'Kolom Alamat tidak boleh kosong',
                 'kontak.required' => 'Kolom Kontak tidak boleh kosong',
                 'email.required' => 'Kolom Email tidak boleh kosong',
                 'email.email' => 'Format Email tidak valid',
-                'dosen_matkul.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
+                'keilmuan.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
                 'foto.required' => 'Silahkan pilih file foto',
                 'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
                 'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
@@ -67,11 +69,12 @@ class DosenController extends Controller
         Dosen::create([
             'nip' => $request->nip, // Changed from telepon to nip
             'nama' => $request->nama,
+            'codename' => $request->codename,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
             'kontak' => $request->kontak,
             'email' => $request->email,
-            'dosen_matkul' => $request->dosen_matkul,
+            'keilmuan' => $request->keilmuan,
             'foto' => $filename,
         ]);
 
@@ -89,6 +92,13 @@ class DosenController extends Controller
         return view('dosen.detail', compact('dosen')); // Changed from employee.detail to dosen.detail
     }
 
+    public function profil()
+    {
+        $auth = auth()->user()->id;
+        $dosen = Dosen::where('users_id', $auth)->first();
+        return view('dosen.profil', compact('dosen')); // Changed from employee.detail to dosen.detail
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -98,29 +108,32 @@ class DosenController extends Controller
         return view('dosen.edit', compact('dosen')); // Changed from employee.edit to dosen.edit
     }
 
-    public function update(Request $request, Dosen $dosen)
+    public function update(Request $request,  $id)
     {
+        $dosen = Dosen::find($id);
         $request->validate(
             [
                 'nip' => 'required|integer',
                 'nama' => 'required',
+                'codename' => 'required',
                 'tgl_lahir' => 'required|date',
                 'alamat' => 'required',
                 'kontak' => 'required',
                 'email' => 'required|email',
-                'dosen_matkul' => 'required',
+                'keilmuan' => 'required',
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ],
             [
                 'nip.required' => 'Kolom NIP tidak boleh kosong',
                 'nip.integer' => 'NIP harus berupa angka',
+                'codename' => 'Kode Dosen tidak boleh kosong',
                 'nama.required' => 'Kolom Nama tidak boleh kosong',
                 'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong',
                 'alamat.required' => 'Kolom Alamat tidak boleh kosong',
                 'kontak.required' => 'Kolom Kontak tidak boleh kosong',
                 'email.required' => 'Kolom Email tidak boleh kosong',
                 'email.email' => 'Format Email tidak valid',
-                'dosen_matkul.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
+                'keilmuan.required' => 'Kolom Dosen Mata Kuliah tidak boleh kosong',
                 'foto.required' => 'Silahkan pilih file foto',
                 'foto.mimes' => 'Tipe File harus JPG/JPEG/PNG/GIF/SVG',
                 'foto.max' => 'Ukuran file tidak boleh dari 10 MB',
@@ -136,22 +149,24 @@ class DosenController extends Controller
             $dosen->update([
                 'nip' => $request->nip, // Changed from telepon to nip
                 'nama' => $request->nama,
+                'codename' => $request->codename,
                 'tgl_lahir' => $request->tgl_lahir,
                 'alamat' => $request->alamat,
                 'kontak' => $request->kontak,
                 'email' => $request->email,
-                'dosen_matkul' => $request->dosen_matkul,
+                'keilmuan' => $request->keilmuan,
                 'foto' => $filename,
             ]);
         } else {
             $dosen->update([
                 'nip' => $request->nip, // Changed from telepon to nip
                 'nama' => $request->nama,
+                'codename' => $request->codename,
                 'tgl_lahir' => $request->tgl_lahir,
                 'alamat' => $request->alamat,
                 'kontak' => $request->kontak,
                 'email' => $request->email,
-                'dosen_matkul' => $request->dosen_matkul,
+                'keilmuan' => $request->keilmuan,
             ]);
         }
 

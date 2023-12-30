@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="rounded-2 bg-light container mb-5 mt-5 p-5 shadow-lg">
         <h2>Tambah Tugas</h2>
 
-        <form action="{{ route('tugas.store') }}" method="POST">
+        <form action="{{ route('tugas.store') }}" class="row" method="POST">
             @csrf
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="matkul">Mata Kuliah <span class="text-danger">*</span></label>
                 <select name="matkul" class="form-control @if ($errors->has('matkul')) is-invalid @endif">
                     <option value="" selected disabled>Mata Kuliah SI Semester 3</option>
@@ -23,7 +23,7 @@
                     <!-- Penambahan opsi "Sistem Operasi" akan diabaikan, karena sudah ada di atas -->
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="semester">Semester <span class="text-danger">*</span></label>
                 <select name="semester" class="form-control @if ($errors->has('semester')) is-invalid @endif">
                     <option value="" selected disabled>Pilih Semester</option>
@@ -38,32 +38,39 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="pertemuan">Pertemuan:</label>
-                <input type="text" class="form-control" id="pertemuan" name="pertemuan" required>
+                <select name="pertemuan" class="form-control @if ($errors->has('pertemuan')) is-invalid @endif">
+                    <option value="" selected disabled>Pertemuan</option>
+                    <option value="1" {{ old('pertemuan') == '1' ? 'selected' : '' }}>Pertemuan 1</option>
+                    <option value="2" {{ old('pertemuan') == '2' ? 'selected' : '' }}>Pertemuan 2</option>
+                    <option value="3" {{ old('pertemuan') == '3' ? 'selected' : '' }}>Pertemuan 3</option>
+                    <option value="4" {{ old('pertemuan') == '4' ? 'selected' : '' }}>Pertemuan 4</option>
+                    <option value="5" {{ old('pertemuan') == '5' ? 'selected' : '' }}>Pertemuan 5</option>
+                    <option value="6" {{ old('pertemuan') == '6' ? 'selected' : '' }}>Pertemuan 6</option>
+                    <option value="7" {{ old('pertemuan') == '7' ? 'selected' : '' }}>Pertemuan 7</option>
+                    <option value="8" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 8</option>
+                    <option value="9" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 9</option>
+                    <option value="10" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 10</option>
+                    <option value="11" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 11</option>
+                    <option value="12" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 12</option>
+                    <option value="13" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 13</option>
+                    <option value="14" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 14</option>
+                    <option value="15" {{ old('pertemuan') == '8' ? 'selected' : '' }}>Pertemuan 15</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="link_tugas">Link Tugas:</label>
-                <input type="text" class="form-control" id="link_tugas" name="link_tugas">
-            </div>
-            <div class="form-group">
-                <label for="nilai">Nilai:</label>
-                <input type="number" class="form-control" id="nilai" name="nilai">
-            </div>
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="tgl_buat">Tanggal Pembuatan:</label>
                 <input type="date" class="form-control" id="tgl_buat" name="tgl_buat" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="tgl_deadline">Tanggal Deadline:</label>
                 <input type="date" class="form-control" id="tgl_deadline" name="tgl_deadline" required>
             </div>
-            <div class="form-group">
-                <label for="tgl_pengumpulan">Tanggal Pengumpulan:</label>
-                <input type="date" class="form-control mb-3" id="tgl_pengumpulan" name="tgl_pengumpulan">
+            <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary me-3">Simpan</button>
+                <a href="{{ route('tugas.index') }}" class="btn btn-secondary">Kembali</a>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
-            <a href="{{ route('tugas.index') }}" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 @endsection

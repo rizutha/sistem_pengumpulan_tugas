@@ -10,7 +10,7 @@
             @endif
             <div class="col-auto">
                 <div class="row">
-                    <h4>{{ $dosen->nama }}</h4>
+                    <h4>{{ $dosen->user->name }}</h4>
                     <p class="fw-bold">NIP: {{ $dosen->nip }}</p>
                 </div>
                 <p class="card-text">Tanggal Lahir: {{ $dosen->tgl_lahir }}</p>
@@ -20,8 +20,5 @@
                 <p class="card-text">Dosen Matkul: {{ $dosen->keilmuan }}</p>
             </div>
         </div>
-
-
-        <a href="{{ route('dosen.index') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 @endsection
