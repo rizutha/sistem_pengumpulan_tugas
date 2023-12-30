@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('id_dosens')->references('id')->on('dosens');
             $table->foreign('id_mahasiswas')->references('id')->on('mahasiswas');
             $table->timestamps();
+            $table->timestamps();
         });
     }
 
