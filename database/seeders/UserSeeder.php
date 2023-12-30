@@ -57,6 +57,13 @@ class UserSeeder extends Seeder
                 'password'=>bcrypt('rifqi123'),
                 'role'=>'mahasiswa',
             ],
+            [
+                'name'=>'aa',
+                'username'=>'aa',
+                'email'=>'rifqi@gmail.com',
+                'password'=>bcrypt('rifqi123'),
+                'role'=>'mahasiswa',
+            ],
         ]);
 
     }
