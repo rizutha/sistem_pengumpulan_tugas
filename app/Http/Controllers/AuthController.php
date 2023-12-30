@@ -45,6 +45,20 @@ class AuthController extends Controller
         }
     }
 
+    public function handleRoles2()
+    {
+        if (Auth::check()) {
+            $roles = auth()->user()->roles;
+            if ($roles == 'admin') {
+                return redirect('/guru/index')->with('success', 'Masuk Sebagai Admin!');
+            } elseif ($roles == 'dosen') {
+                return redirect('/guru/index')->with('success', 'Masuk Sebagai guru!');
+            } else {
+                return redirect('/mahasiswa/index')->with('success', 'Masuk Sebagai Siswa!');
+            }
+        }
+    }
+
     public function logout()
     {
         Auth::logout();
